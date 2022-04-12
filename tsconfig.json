@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist",
+      "module": "es2015",
+      "target": "es2017",
+      "moduleResolution": "node",     
+      "jsx": "react",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "incremental": true,
+      "sourceMap": true,
+      "declaration": true,
+      "declarationMap": true,
+      "resolveJsonModule": true,
+      "strict": true,                         
+      "strictNullChecks": true,             
+      "skipLibCheck": true,             
+      "importHelpers": true,   
+      "forceConsistentCasingInFileNames": true 
+    },
+    "include": ["src"],
+    "exclude": [
+      "node_modules",
+      "examples",
+      "src/*.test.ts",
+      "src/*.test.tsx",
+      "src/*.test-d.ts",
+      "src/*.test-d.tsx",
+      "src/__mocks__"
+    ]
+}
