@@ -4,23 +4,24 @@ import { ComponentType, useEffect, useMemo } from "react";
 
 import { AcornInputProps, AcornInputType } from "../types";
 import { Validator, validate } from "../validators";
+import * as React from "react";
 
-export interface FormFieldProps<T = AcornInputType> {
+export type AllowedElements = "input" | "textarea" | "select";
+
+export interface AcornFormFieldProps<T = AcornInputType> {
     form: Form,
     name: string,
-    component: ComponentType<AcornInputProps<T>>,
-    id?: string,
+    component: AllowedElements | ComponentType<AcornInputProps<T>>,
     validators?: Validator[]
 }
 
-export const FormField = ({
+export const AcornFormField = ({
         component: Component,
         form,
         name,
-        id,
         validators = [],
         ...additionalProps
-    }: FormFieldProps) => {
+    }: AcornFormFieldProps) => {
         const { onChange, onValidate, value, ...fieldProps } = useField(name, form);
 
         const validateOnChange = async (value: any) => {
@@ -54,14 +55,14 @@ export const FormField = ({
             return props;
         }, [validators]);
 
-        return <Component 
-                    id={id || name}
-                    name={name}
-                    value={value}
-                    onChange={validateOnChange}
-                    {...fieldProps} 
-                    {...additionalProps}  
-                    {...validatorProps}
-                />
+        return (
+            <Component 
+                name={name}
+                value={value}
+                onChange={validateOnChange}
+                {...fieldProps} 
+                {...additionalProps}  
+                {...validatorProps}
+            />
+        )
     }
-);
